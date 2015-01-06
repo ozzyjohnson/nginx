@@ -1,15 +1,12 @@
-#
-# Nginx Dockerfile
-#
-# https://github.com/dockerfile/nginx
-#
+FROM debian:wheezy
 
-# Pull base image.
-FROM dockerfile/ubuntu
+MAINTAINER Oswald Johnson <oswald.johnson@gsa.gov>
+
+ENV DEBIAN_FRONTEND noninteractive
 
 # Install Nginx.
 RUN \
-  add-apt-repository -y ppa:nginx/stable && \
+  echo "deb http://ppa.launchpad.net/nginx/stable/debian wheezy main" > /etc/apt/sources.list.d/nginx  && \
   apt-get update && \
   apt-get install -y nginx && \
   rm -rf /var/lib/apt/lists/* && \
